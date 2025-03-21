@@ -16,7 +16,7 @@ public partial class TheWorld : MonoBehaviour
     // parameters
     [Header("Parameters")]
     public int dimensions;
-    public float secPerGen = 0.005f, spawnDistance = 0;
+    public float secPerGen = 0.2f, spawnDistance = 0;
     public int tileSetdefault = 0, autoDirection = 0, cellCount = 0, gridCount = 0, backtrackLimit = 100;
 
 
