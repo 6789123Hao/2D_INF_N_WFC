@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subTile: {fileID: 0}
   weight: 15
-  isWalkable: 1
   upNeighbours:
   - {fileID: 4968642346842232398}
   - {fileID: -5971122965160270827, guid: c3484139785bb754988517411a564959, type: 3}
@@ -57,6 +56,7 @@ MonoBehaviour:
   - {fileID: -5971122965160270827, guid: a0e324818407579458631df4aec79b4a, type: 3}
   - {fileID: -5971122965160270827, guid: 7cc9102744cf2b841ac4ce7a4145787d, type: 3}
   - {fileID: -5971122965160270827, guid: e7e5a3a1037ab5348976b8b5829451c5, type: 3}
+  - {fileID: -2415979121591318516, guid: 82da02900a0638644b0cd3eb4ef9833c, type: 3}
   rightNeighbours:
   - {fileID: 4968642346842232398}
   - {fileID: -5971122965160270827, guid: 7cc9102744cf2b841ac4ce7a4145787d, type: 3}
@@ -65,6 +65,7 @@ MonoBehaviour:
   - {fileID: -5971122965160270827, guid: 2c5e4a844839f9c4fbe8d9b56c840707, type: 3}
   - {fileID: -5971122965160270827, guid: 7a61db12a091720498b7ed03bba50680, type: 3}
   - {fileID: -5971122965160270827, guid: e7e5a3a1037ab5348976b8b5829451c5, type: 3}
+  - {fileID: -4724933887060999183, guid: 19a38563e05da7644881b599fa48ff41, type: 3}
   downNeighbours:
   - {fileID: 4968642346842232398}
   - {fileID: -5971122965160270827, guid: 7a61db12a091720498b7ed03bba50680, type: 3}
@@ -73,6 +74,7 @@ MonoBehaviour:
   - {fileID: -5971122965160270827, guid: 3d5df8aa4b578cc46bda9784acb3bc79, type: 3}
   - {fileID: -5971122965160270827, guid: e7e5a3a1037ab5348976b8b5829451c5, type: 3}
   - {fileID: -5971122965160270827, guid: 5a81a7f23810d714dbd63310f30d8bf4, type: 3}
+  - {fileID: 7610136359648083026, guid: c51c098640d0c1b4b8a1c0129b765ef9, type: 3}
   leftNeighbours:
   - {fileID: 4968642346842232398}
   - {fileID: -5971122965160270827, guid: d2e7ee4b4eabd824eb934ad16453fce7, type: 3}
@@ -81,6 +83,7 @@ MonoBehaviour:
   - {fileID: -5971122965160270827, guid: c3484139785bb754988517411a564959, type: 3}
   - {fileID: -5971122965160270827, guid: e7e5a3a1037ab5348976b8b5829451c5, type: 3}
   - {fileID: -5971122965160270827, guid: 5a81a7f23810d714dbd63310f30d8bf4, type: 3}
+  - {fileID: -4223544549652715370, guid: a1419d213fa71eb42b9781e3eb3d0164, type: 3}
   upConstraints: []
   rightConstraints: []
   downConstraints: []

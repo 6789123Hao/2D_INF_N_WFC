@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subTile: {fileID: 0}
   weight: 1
-  isWalkable: 1
   upNeighbours:
   - {fileID: -4223544549652715370, guid: a1419d213fa71eb42b9781e3eb3d0164, type: 3}
   - {fileID: 7936163823451718793, guid: cae2435d97550cb4ea40d10741d1a334, type: 3}

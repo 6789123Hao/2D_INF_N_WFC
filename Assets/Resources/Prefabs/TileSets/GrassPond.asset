@@ -15,7 +15,7 @@ MonoBehaviour:
   tiles:
   - tilePrefab: {fileID: 4968642346842232398, guid: 53d254c459ce04148b91038ff6dbad3d,
       type: 3}
-    defaultWeight: 1
+    defaultWeight: 10
   - tilePrefab: {fileID: -2415979121591318516, guid: 82da02900a0638644b0cd3eb4ef9833c,
       type: 3}
     defaultWeight: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
     defaultWeight: 1
   effectRules:
   - {fileID: 11400000, guid: 37165ec5d75de374682cb61e3456f1d2, type: 2}
-  currentEffectRule: {fileID: 0}
+  currentEffectRule: {fileID: 11400000, guid: 37165ec5d75de374682cb61e3456f1d2, type: 2}
   fallbackTiles:
   - {fileID: -5971122965160270827, guid: 8fd77757b2b12b04da7bb852331a8560, type: 3}
   toBeCombinedTiles: []
