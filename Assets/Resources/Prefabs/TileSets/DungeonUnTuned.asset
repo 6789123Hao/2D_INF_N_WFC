@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d4d6fa396ea2646930d7fc41e3552c, type: 3}
+  m_Name: DungeonUnTuned
+  m_EditorClassIdentifier: 
+  tiles:
+  - tilePrefab: {fileID: 8244275657177189749, guid: 44431fcd106cb4449a428c15664fe2a8,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6297084673940193792, guid: db48839666e155247ae9fb60c3f3da68,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: 4a823ac0ae128494bb1094b7895ad6a0,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: 556d81099d4c12a4f835a505fd11138b,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: d95de6895ad5daf4c817d1fac6cae2b1,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: -3306802520066772106, guid: 5b916aa8205dae3438f187ba2730116b,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: -1792440857333835865, guid: 38ee9ab5420039944a77637e2d1537cc,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 3739775158778570072, guid: 339a4d6d1b2cbb84aa60e683512922f5,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -2181160832071828928, guid: 6236042114bd4e546984693439ff93f6,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 5153101469370906626, guid: 77c783acb4cf8004eaa8f065e1bc0dd9,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: -1883207894409757320, guid: ae0ea52ccc599de48b57f62e0319648f,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: 771ca0bcc189c104f95fc6cd82ab1b4a,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: 2f0e9556635f9e04b81097678e41a7da,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: 8cfbc5302c9341c4a995aff22b2fe758,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: e113fe22d11dc0640ababb9a145cf558,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -2723742752289204178, guid: 44c2f47b54e16224f93837be4da1bc11,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 7768382526052687105, guid: e21da09a443f51942971e05fa7201be7,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: debe71a6402329645bf6597a9f2d6a77,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: 27644415efb93734aafe68fbb971bca1,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 5233733620399197582, guid: edac0de7982df834180df569acf9bfd5,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 6025980213664002726, guid: 8851c7c421e315144b084fd5935c3a12,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6025980213664002726, guid: eab1b0fc9fcd7fb4b81becfa48fff58b,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6025980213664002726, guid: ec953688c0560a04082898768c07bd13,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6025980213664002726, guid: 059665bd3155b43408bec5956093d101,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6025980213664002726, guid: 042c8bc66fa0c0041aa5204382c41d45,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6025980213664002726, guid: 93be97fe8a38eb44c86ae5a873acf3d9,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6025980213664002726, guid: cc5f1a9d89ae44844a981d9a2c479e2c,
+      type: 3}
+    defaultWeight: 0
+  - tilePrefab: {fileID: 6025980213664002726, guid: 26106a395923d974dbfb7bef54d0f6e2,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1883207894409757320, guid: 01e55f3a4a7acd64b917f0b4c4e2877a,
+      type: 3}
+    defaultWeight: 0
+  fallbackTiles:
+  - {fileID: 5270437064077285966, guid: 85b42591c21235345b69344cbb242dd1, type: 3}
+  toBeCombinedTiles: []
+  LoadingTiles: []

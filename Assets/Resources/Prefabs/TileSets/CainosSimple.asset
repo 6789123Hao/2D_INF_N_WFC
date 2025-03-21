@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d4d6fa396ea2646930d7fc41e3552c, type: 3}
+  m_Name: CainosSimple
+  m_EditorClassIdentifier: 
+  tiles:
+  - tilePrefab: {fileID: -5971122965160270827, guid: 19986e3c467928740af31c614654d08e,
+      type: 3}
+    defaultWeight: 20
+  - tilePrefab: {fileID: -5971122965160270827, guid: aa2e15c5b946b2b4d966d298339d6aff,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: ce3be857212bf3d419cd264c11a9e79a,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 7a3440f317c6a1746b9921866c06a687,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: cc842d30eb68ead4c9af5a07acb24169,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: b79bdb68b925c614c838ddac8c90c15b,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 8988e53f2f70e4041936022fedd08522,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: cc842d30eb68ead4c9af5a07acb24169,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: f87cfab089b951747af2b8b5788da392,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 9dc228990c505eb4fa51bf7065be96fe,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 44b47989401b93545b3943123d56983c,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 0e049ec45512f054b9c1520207942f45,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: ec7e7aa1451eda548891069455f8a51c,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 9a7bb02b79265e14aa79b302278deffd,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: fedc91b915df25749979cb811268d994,
+      type: 3}
+    defaultWeight: 1
+  effectRules: []
+  currentEffectRule: {fileID: 0}
+  fallbackTiles:
+  - {fileID: -5971122965160270827, guid: cb667d2f4f9356547aa09737dc912a72, type: 3}
+  - {fileID: -5971122965160270827, guid: abe8089dcc43d8a4d8e8f5297ad9ad74, type: 3}
+  toBeCombinedTiles: []
+  LoadingTiles: []

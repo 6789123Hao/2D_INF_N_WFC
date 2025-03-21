@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d4d6fa396ea2646930d7fc41e3552c, type: 3}
+  m_Name: Cainos2+3Floors
+  m_EditorClassIdentifier: 
+  tiles:
+  - tilePrefab: {fileID: -5971122965160270827, guid: 4631a02373f54124a98b63b174ee32ad,
+      type: 3}
+    defaultWeight: 2
+  - tilePrefab: {fileID: -5971122965160270827, guid: 0368a04ebcd90e340b7cc88c2123e5f9,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 7c9e7f56333ebfa4eb5b8c7713f3f3a0,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 8cef3597ff14ba44f8f704b0484a1937,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: b9d2d2120256b7f488d163c517606ee5,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: cd78170c6c48c804782ec35ec3e1c022,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: f4d816a08cc4ad148ab5ac60274dd6e3,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: cd68f97738b2535499cdda0dc4048916,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: a03cdcdde511da4418f1c2f1053021fb,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 0cadbd1e645cfdc4b8922a1e56477f41,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 818e2aad7f3ebe74c85eeabba7f78291,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: aa2e15c5b946b2b4d966d298339d6aff,
+      type: 3}
+    defaultWeight: 1
+  fallbackTiles:
+  - {fileID: -5971122965160270827, guid: cb667d2f4f9356547aa09737dc912a72, type: 3}
+  - {fileID: -5971122965160270827, guid: abe8089dcc43d8a4d8e8f5297ad9ad74, type: 3}
+  toBeCombinedTiles: []

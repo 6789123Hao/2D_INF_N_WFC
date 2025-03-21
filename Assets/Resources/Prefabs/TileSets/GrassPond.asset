@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d4d6fa396ea2646930d7fc41e3552c, type: 3}
+  m_Name: GrassPond
+  m_EditorClassIdentifier: 
+  tiles:
+  - tilePrefab: {fileID: 4968642346842232398, guid: 53d254c459ce04148b91038ff6dbad3d,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -2415979121591318516, guid: 82da02900a0638644b0cd3eb4ef9833c,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -1612128789726179581, guid: f2e57c78efb2a1249ae4f90472c439d4,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -4724933887060999183, guid: 19a38563e05da7644881b599fa48ff41,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 5a50a7f43c5a85341a814073520bc73c,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 7610136359648083026, guid: c51c098640d0c1b4b8a1c0129b765ef9,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 8458a1c5a8d916045bcd846060dca0ad,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -4223544549652715370, guid: a1419d213fa71eb42b9781e3eb3d0164,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 7936163823451718793, guid: cae2435d97550cb4ea40d10741d1a334,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 54a2ddf1660ad4046a562983b4a9ac98,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 1c15885f0a3cbbf47a70573fa892b0fd,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: d62b4b078391c084bb2f342b19c5f821,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 063632a60978fa848a899e550cf65d12,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: de22342e302775c40a799018a7d984e5,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 7356096277232029914, guid: 4e913133beb63b949877eaccfadd4f3a,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: -5971122965160270827, guid: 9a0d5835a4655904b9c018df50c6d822,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 4968642346842232398, guid: 1131da66a7ad23044bb753beb9444a82,
+      type: 3}
+    defaultWeight: 1
+  effectRules:
+  - {fileID: 11400000, guid: 37165ec5d75de374682cb61e3456f1d2, type: 2}
+  currentEffectRule: {fileID: 0}
+  fallbackTiles:
+  - {fileID: -5971122965160270827, guid: 8fd77757b2b12b04da7bb852331a8560, type: 3}
+  toBeCombinedTiles: []
+  LoadingTiles: []

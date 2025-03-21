@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d4d6fa396ea2646930d7fc41e3552c, type: 3}
+  m_Name: TextureWorld
+  m_EditorClassIdentifier: 
+  tiles:
+  - tilePrefab: {fileID: -2179015328340689920, guid: 9d2f2f9041e6510499887576148fc8fd,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 1162730856551198108, guid: 635de42c10261c84d8cd2741f1873719,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 2943429159975181228, guid: db037484c9fb9214d9399435ebadd950,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 3210648944931950165, guid: 0d04958f7d7f25149a8b819cee9c7a99,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 7997969884365173999, guid: 3c9f6a12cad2a9b4ea33f926031a0615,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 2943429159975181228, guid: 5b93c4cb3c81ccc4b94caa7462cdbde9,
+      type: 3}
+    defaultWeight: 1
+  fallbackTiles:
+  - {fileID: 8641019930208502803, guid: fd5cb1ce580ac5b4398c4de0f9797e15, type: 3}

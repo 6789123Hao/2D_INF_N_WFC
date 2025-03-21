@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586671adc659c51488370d351ab7af71, type: 3}
+  m_Name: PosWest
+  m_EditorClassIdentifier: Assembly-CSharp::DirectionEffect
+  affectedTiles:
+  - tilePrefab: {fileID: 2943429159975181228, guid: 9b5b001ebdc5cfd45afc96d9cda287f5,
+      type: 3}
+    defaultWeight: 1
+  PositiveX: 0
+  NegativeX: 1
+  PositiveY: 0
+  NegativeY: 0
+  scalingFactor: 10

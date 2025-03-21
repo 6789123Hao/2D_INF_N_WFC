@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d4d6fa396ea2646930d7fc41e3552c, type: 3}
+  m_Name: ColorWorld
+  m_EditorClassIdentifier: 
+  tiles:
+  - tilePrefab: {fileID: -2179015328340689920, guid: 8dbdebee003ca8046bd6bdeb3a3fd6a2,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 1162730856551198108, guid: 1a4f3c979af21204db005cfbe777d0c4,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 2943429159975181228, guid: 37882decf2ead0947afcff44a21fbfc0,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 3210648944931950165, guid: 81eb6fc157c973a41a0fd08d55f43a44,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 7997969884365173999, guid: c1d43e52ab98cb146b9e45327e1321cc,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 2943429159975181228, guid: 9b5b001ebdc5cfd45afc96d9cda287f5,
+      type: 3}
+    defaultWeight: 1
+  effectRules:
+  - {fileID: 11400000, guid: 37165ec5d75de374682cb61e3456f1d2, type: 2}
+  - {fileID: 11400000, guid: 6f8513025368005428106e05caf07380, type: 2}
+  currentEffectRule: {fileID: 11400000, guid: 6f8513025368005428106e05caf07380, type: 2}
+  fallbackTiles:
+  - {fileID: 8641019930208502803, guid: 763bc78731331f049a65134a3cd299ab, type: 3}
+  toBeCombinedTiles: []
+  LoadingTiles: []

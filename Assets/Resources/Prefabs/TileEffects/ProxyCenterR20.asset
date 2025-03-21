@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a83a293b7a5b9849b5da5cfdb19a83c, type: 3}
+  m_Name: ProxyCenterR20
+  m_EditorClassIdentifier: 
+  affectedTiles:
+  - tilePrefab: {fileID: -2179015328340689920, guid: 8dbdebee003ca8046bd6bdeb3a3fd6a2,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 6025980213664002726, guid: 26106a395923d974dbfb7bef54d0f6e2,
+      type: 3}
+    defaultWeight: 1
+  - tilePrefab: {fileID: 4968642346842232398, guid: 53d254c459ce04148b91038ff6dbad3d,
+      type: 3}
+    defaultWeight: 1
+  zoneCenters:
+  - {x: 0, y: 0, z: 0}
+  maxDistance: 20
+  minDistance: 0
+  addingWeightMax: 25
