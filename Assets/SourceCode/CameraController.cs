@@ -16,6 +16,9 @@ public class CameraController : MonoBehaviour
     {
         MainCamera = Camera.main;
         InitializeCamera();
+    }
+    void Start()
+    {
         UpdateToWorld();
     }
 

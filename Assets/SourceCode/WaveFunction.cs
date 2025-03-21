@@ -9,6 +9,9 @@ using System.IO;
 
 /// <summary>
 /// Implements the Wave Function Collapse algorithm for procedural map generation.
+/// Direction from 0-3 is up, right, down, left; 
+/// from 0-8 is clockwise : up, up-right, right, down-right, down, down-left, left, up-left
+/// It's also responsible for handling testing cases。
 /// </summary>
 public class WaveFunction : MonoBehaviour
 {
@@ -20,29 +23,20 @@ public class WaveFunction : MonoBehaviour
     private int backtrackCoroutineCalled = 0;
     public int gridX, gridY;
 
-    // backtracking tree
-    public DecisionTreeNode decisionTreeRoot;
-    public DecisionTreeNode currentNode;
-
     public Cell currentProblematicCell;
 
     //Hashset of Problematic cells and their regenerated grid count
     public Dictionary<Cell, int> problematicCells = new Dictionary<Cell, int>();
-
     public TheWorld theWorld;
     public ThePlayer thePlayer;
     public float distanceFromPlayer, extendDistance;
     private GameObject CellCollect, DumpCollect;
-    // private GameObject TileCollect;
-    // public GameObject WFPrefab;
     public float secPerStep;
     public int dimension, posOffset;
     public Tile[] tileOptionsAll;// possible tiles
-    // public GameObject thisWFGridObj;
     public Cell[,] theGrid; // the grid static positions
     public List<Cell> gridComponents; // the grid waiting to be populated
     public Cell cellObj; // the cell prefab
-
     private System.Random rng; //  Random number generator
 
     public WaveFunction ParentGrid;
@@ -62,8 +56,7 @@ public class WaveFunction : MonoBehaviour
     public Cell[] myCornerCells = new Cell[4]; // Top-right, Bottom-right, Bottom-left, Top-left
     public Cell[] myTopRow, myRightColumn, myBottomRow, myLeftColumn;
 
-
-
+    // constructor
     public WaveFunction(int dimensions, Tile[] tileObjects, Cell cellObj, TheWorld theWorld = null)
     {
         this.dimension = dimensions;
@@ -71,37 +64,8 @@ public class WaveFunction : MonoBehaviour
         this.cellObj = cellObj;
         this.theWorld = theWorld;
     }
-    public class CellHistoryState
-    {
-        public Cell cell;
-        public Tile[] previousOptions;  // Options before the collapse
-        public Tile selectedTile;       // Option selected during collapse
 
-        public CellHistoryState(Cell cell, Tile[] previousOptions, Tile selectedTile)
-        {
-            this.cell = cell;
-            this.previousOptions = previousOptions;
-            this.selectedTile = selectedTile;
-        }
-
-        public void RemoveSelectedTileFromOptions()
-        {
-            List<Tile> temp = new List<Tile>(previousOptions);
-            try
-            {
-                temp.Remove(selectedTile);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Error removing tile: " + e.Message);
-            }
-            previousOptions = temp.ToArray();
-        }
-    }
-
-    // public List<CellHistoryState> stateHistory = new List<CellHistoryState>();
     private Coroutine generationCoroutine;
-
 
     void Awake()
     {
@@ -117,21 +81,10 @@ public class WaveFunction : MonoBehaviour
         Debug.Assert(thePlayer != null, "ThePlayer script not found");
 
         neighborsWFCTopCW = new WaveFunction[8];
-        // thisWFGridObj = this.gameObject;
-        // stateHistory = new List<CellHistoryState>();
-
 
         Vector3 tempInt3D = _grid.transform.position;
-        // Debug.Log($"Grid transform position: {tempInt3D.x}, {tempInt3D.y}");
         gridX = (int)tempInt3D.x;
         gridY = (int)tempInt3D.y;
-        // Debug.Log($"Grid transform Int position: {gridX}, {gridY}");
-        Vector2Int tempInt2D = (Vector2Int)_grid.WorldToCell(transform.position);
-        // Debug.Log($"Grid WorldToCell: {tempInt2D.x}, {tempInt2D.y}");
-
-        Vector3 tempLocal3D = _grid.CellToLocal((Vector3Int)tempInt2D);
-        // Debug.Log($"Grid CellToLocal: {tempLocal3D.x}, {tempLocal3D.y}");
-
 
         gridStartTime = -1f;
     }
@@ -160,15 +113,12 @@ public class WaveFunction : MonoBehaviour
         {
             rng = new System.Random(); // Use default random if seeding is not enabled
         }
-
     }
 
-
+    // 
     [ContextMenu("Initialize")]
     public void Initialize()
     {
-        decisionTreeRoot = new DecisionTreeNode(null, tileOptionsAll, null);
-        currentNode = decisionTreeRoot;
 
         InitializeGrid();
         NeighborInteractions();
@@ -180,11 +130,9 @@ public class WaveFunction : MonoBehaviour
         this.theWorld = world;
         this.gridX = gridPosition.x;
         this.gridY = gridPosition.y;
-
-        // Perform additional setup for your WaveFunction
-
     }
 
+    // Initialize with a reference to TheWorld, grid dimensions, cell prefab, and time to wait
     public void InitializeGridProperties(int dimensions, Cell cellObj, float secToWait, TheWorld theWorld = null)
     {
         this.theWorld = theWorld;
@@ -193,13 +141,13 @@ public class WaveFunction : MonoBehaviour
         this.cellObj = cellObj;
         this.secPerStep = secToWait;
         totalCellCount = dimension * dimension;
-
-        // thisWFGridObj = this.gameObject;
-
         SetCollections();
         InitializeNeighborEdgesNulls();
     }
 
+    // <summary>
+    // Create an empty grid, store edge and corner cells, and populate the grid with NxN cells.
+    // </summary>
     void InitializeGrid()
     {
         CreateEmptyGrid();
@@ -209,24 +157,21 @@ public class WaveFunction : MonoBehaviour
 
     public void NeighborInteractions()
     {
-
-
         dimension = theWorld.GetDimension();
         DetectNeighbors();
 
         GridOverWriteWithEdges();
         StoreMyEdgeCells();
-
     }
 
+
+    // <summary>
+    // record starting time and start the WFC algorithm
+    // </summary>
     [ContextMenu("RunWFC")]
     public void RunWFC()
     {
-        if (gridStartTime == -1f)
-        {
-            gridStartTime = Time.realtimeSinceStartup;
-        }
-        // Debug.Log("Started " + gridStartTime.ToString());
+        if (gridStartTime == -1f) { gridStartTime = Time.realtimeSinceStartup; }
         InsertCurrentGridToWFCList();
         ValidateAllUnCollapsedCells();
         StartCellSelection();
@@ -239,7 +184,6 @@ public class WaveFunction : MonoBehaviour
         if (generationCoroutine != null)
         {
             StopCoroutine(generationCoroutine);
-
         }
         // Start the entropy check and potential collapse
         generationCoroutine = StartCoroutine(CheckEntropy());
@@ -293,14 +237,12 @@ public class WaveFunction : MonoBehaviour
             if (hit)
             {
                 WaveFunction neighbor = hitInfo.collider.gameObject.GetComponent<WaveFunction>();
-                // Debug.Log(this.name + " Neighbor found: " + neighbor.name);
                 if (neighbor == this)
                 {
                     continue;
                 }
                 if (neighborsWFCTopCW[i] == neighbor)
                 {
-                    // Debug.Log("Neighbor already set.");
                     continue;
                 }
                 neighborsWFCTopCW[i] = neighbor;
@@ -463,9 +405,6 @@ public class WaveFunction : MonoBehaviour
         if (Nbor_CornerCells[3] != null && myCornerCells[3] == null)
         {
             RemoveMyOverlappingCellinGrid(Nbor_CornerCells[3], myCornerCells[3], 0, dimension - 1);
-            // Debug.Log("Overwriting top-left corner with neighbor's top-left corner.");
-            // RemoveMyOverlappingCell(myCornerCells[3], Nbor_CornerCells[3], 0, dimension - 1);
-            // myCornerCells[3] = Nbor_CornerCells[3];
         }
 
         RemoveDumpCollect();
@@ -479,20 +418,15 @@ public class WaveFunction : MonoBehaviour
     // this method welcomes the old cell as theGrid[x,y] and move newly generated cell to DumpCollect
     void RemoveMyOverlappingCellinGrid(Cell oldCell, Cell myRedundentCell, int x, int y)
     {
-        if (oldCell == null)
-        {
-            // Debug.LogError("Old cell is null.");
-            return;
-        }
+        if (oldCell == null) { return; }
 
         if (myRedundentCell == null)
         {
-            // Debug.LogError("My redundant cell is null.");
+            return;
         }
 
         if (oldCell == myRedundentCell)
         {
-            // Debug.LogError("Old cell and my redundant cell are the same." + oldCell.name + this.name);
             return;
         }
 
@@ -501,9 +435,6 @@ public class WaveFunction : MonoBehaviour
         gridComponents.Remove(myRedundentCell);
         myRedundentCell.transform.parent = DumpCollect.transform;
         oldCell.transform.parent = CellCollect.transform;
-
-        // Debug.Log($"{oldCell.name} at position ({x},{y}) has local position {oldCell.transform.localPosition}");
-
     }
 
 
@@ -520,6 +451,7 @@ public class WaveFunction : MonoBehaviour
         }
     }
 
+    //provide my edge cells to given neighbor
     private void ProvideMyEdgeToNeighbor(int direction, WaveFunction newNeighbor)
     {
         switch (direction)
@@ -775,8 +707,6 @@ public class WaveFunction : MonoBehaviour
 
 
         cell.isCollapsed = true;
-        // Add the cell to the history list
-        currentNode.ChosenOption = selectedTile;
 
         collapsedCount++;
 
@@ -1053,11 +983,6 @@ public class WaveFunction : MonoBehaviour
         {
             backtrackStack.Clear();
         }
-        // Clean up the tree
-        if (decisionTreeRoot != null)
-        {
-            decisionTreeRoot = null;
-        }
 
         LogGenerationTime();
 
@@ -1105,6 +1030,8 @@ public class WaveFunction : MonoBehaviour
         return theGrid[x, y];
     }
 
+
+    // Validate the options for a cell based on its neighborcells
     void ValidateOptionsBasedOnNeighbors(int x, int y, Cell cell, List<Tile> options)
     {
         // Implement the logic to remove invalid options based on the cell's neighbors.
@@ -1193,10 +1120,6 @@ public class WaveFunction : MonoBehaviour
                 validOptions = validOptions.Intersect(leftValidTiles).ToList();
             }
 
-
-            // Debug.Log("Validating  " + cell.name + " with " + cellAbove);
-            // Debug.Log($"Validating  {cell.name} at {xInGrid},{yInGrid} in {gameObject.name}");
-
             // Update the options for the cell based on valid options determined by neighbors
             options.Clear();
             options.AddRange(validOptions);
@@ -1210,7 +1133,6 @@ public class WaveFunction : MonoBehaviour
             // Ensure the flag is always reset after validation
             cell.isBeingValidated = false;
         }
-
     }
 
 
@@ -1441,79 +1363,13 @@ public class WaveFunction : MonoBehaviour
         }
     }
 
-
-
-    // ================= Backtrack w/ tree =================
-
-
-    public class DecisionTreeNode
-    {
-        public Cell Cell { get; private set; }
-        public Tile[] AvailableOptions { get; private set; }
-        public Tile ChosenOption { get; set; }
-        public DecisionTreeNode Parent { get; private set; }
-        public List<DecisionTreeNode> Children { get; private set; }
-
-        public DecisionTreeNode(Cell cell, Tile[] availableOptions, DecisionTreeNode parent = null)
-        {
-            Cell = cell;
-            AvailableOptions = (Tile[])availableOptions.Clone(); // Clone the options
-            ChosenOption = null;
-            Parent = parent;
-            Children = new List<DecisionTreeNode>();
-        }
-
-        // Remove the chosen tile from available options to prevent selecting it again
-        public bool RemoveChosenOption()
-        {
-            List<Tile> optionList = new List<Tile>(AvailableOptions);
-
-            optionList.Remove(ChosenOption);
-            AvailableOptions = optionList.ToArray();
-
-
-            Cell.ReFillCell(AvailableOptions);
-            return AvailableOptions.Length > 0;
-        }
-
-
-    }
-
-    /*
-    Current Node - The node that is currently being processed
-    initial backtracking node is the leaf node
-    Backtrack is called only when child node or grandchild node has no options left
-
-    choices
-    0- i have no choice, need parent
-    1- i have one choice, need parent
-    2+ i have multiple choices, need to remove old choice and try new one
-
-    parent
-    0- when i have no choice and no parent, need fallback
-    0- when i have no choice, need parent
-    1- when i have one choice, my child has problem, need my parent
-    2- when i have multiple choices, my child has problem, I can try to solve it
-
-    
-    1. If the current node has no more than one options
-        Remove my current option and refill my child options
-        Move up to the parent and backtrack further
-    2. If the current node has more than one option
-        Revert current node tile and options
-        Refill child options based on the newly selected tile for the current node
-        Collapse the cell again
-    3. If there's no parent, backtracking has failed
-        Use fallback tile for the current cell
-    */
+    // ----- backtracking w/ stack -----
 
     private int backtrackCount = 0;
     private const int maxBacktrackDepth = 50; // Or any reasonable number
     void BacktrackWithStack()
     {
         backtrackCount++;
-        // collapsedCount++;
-        // backtrackCoroutineCalled++;
         if (backtrackCount > maxBacktrackDepth)
         {
             Debug.LogWarning("Max backtrack depth reached. Applying fallback.");
@@ -1522,9 +1378,7 @@ public class WaveFunction : MonoBehaviour
         }
         if (backtrackStack == null || backtrackStack.Count == 0)
         {
-            // Debug.LogError("Backtracking failed. No previous state to revert to.");
             UseFallBackTile(currentProblematicCell); // Use fallback if there's no state to revert
-
             StartCellSelection();
             return;
         }
@@ -1532,18 +1386,11 @@ public class WaveFunction : MonoBehaviour
         // Pop the last state from the stack
         CellState lastState = backtrackStack.Pop();
         Cell cell = lastState.Cell;
-        // Debug.Log("Backtracking... on " + cell.name);
         // Remove the selected tile from available options
         lastState.RemoveSelectedTile();
 
-        // for (int i = 0; i < lastState.AvailableOptions.Count; i++)
-        // {
-        //     Debug.Log("Option " + i + ": " + lastState.AvailableOptions[i].name);
-        // }
-
         if (lastState.HasChoices())
         {
-
             // If there are remaining options, try collapsing the cell again
             lastState.Cell.DestroyCellChildren(); // Destroy the last instantiated tile
             lastState.Cell.ReFillCell(lastState.AvailableOptions.ToArray()); // Refill the cell with the available options
@@ -1565,80 +1412,7 @@ public class WaveFunction : MonoBehaviour
         }
     }
 
-    // void BacktrackWithTree()
-    // {
-    //     if (currentNode == null)
-    //     {
-    //         Debug.LogError("Backtracking failed. No parent node.");
-    //         UseFallBackTile(currentProblematicCell);
-    //         return;
-    //     }
 
-    //     if (currentNode.AvailableOptions.Length <= 1)
-    //     {
-    //         // Remove the chosen option from the parent node
-    //         currentNode.RemoveChosenOption();
-    //         currentNode.Cell.DestroyCellChildren();
-    //         // Move up to the parent node
-    //         currentNode = currentNode.Parent;
-    //         Backtrack();
-    //     }
-    //     else
-    //     {
-    //         // Revert the current node's tile and options
-    //         currentNode.Cell.DestroyCellChildren();
-    //         currentNode.Cell.ReFillCell(currentNode.AvailableOptions);
-
-    //         // Refill child options based on the newly selected tile for the current node
-    //         RefillChildOptions(currentNode);
-
-    //         // Collapse the cell again
-    //         CollapseCell(currentNode.Cell);
-    //     }
-
-    // }
-
-    // void RefillChildOptions(DecisionTreeNode parentNode)
-    // {
-    //     foreach (DecisionTreeNode childNode in parentNode.Children)
-    //     {
-    //         Cell childCell = childNode.Cell;
-    //         Tile parentTile = parentNode.ChosenOption;
-
-    //         if (parentTile != null)
-    //         {
-    //             List<Tile> validOptions = new List<Tile>(childCell.tileOptions);
-
-    //             // Update valid options based on the parent tile (constraints depending on neighbors)
-    //             // Assume we are propagating neighbor constraints (e.g., matching edges/tiles)
-    //             if (parentTile.upNeighbours != null && childCell.transform.localPosition.y < parentNode.Cell.transform.localPosition.y)
-    //             {
-    //                 validOptions = validOptions.Intersect(parentTile.upNeighbours).ToList();
-    //             }
-    //             if (parentTile.rightNeighbours != null && childCell.transform.localPosition.x > parentNode.Cell.transform.localPosition.x)
-    //             {
-    //                 validOptions = validOptions.Intersect(parentTile.rightNeighbours).ToList();
-    //             }
-    //             if (parentTile.downNeighbours != null && childCell.transform.localPosition.y > parentNode.Cell.transform.localPosition.y)
-    //             {
-    //                 validOptions = validOptions.Intersect(parentTile.downNeighbours).ToList();
-    //             }
-    //             if (parentTile.leftNeighbours != null && childCell.transform.localPosition.x < parentNode.Cell.transform.localPosition.x)
-    //             {
-    //                 validOptions = validOptions.Intersect(parentTile.leftNeighbours).ToList();
-    //             }
-
-    //             // Refill the cell with new valid options
-    //             childCell.ReFillCell(validOptions.ToArray());
-    //         }
-
-    //         // Recursively refill child options further down the tree
-    //         RefillChildOptions(childNode);
-    //     }
-    // }
-
-
-    // ----- backtracking w/ stack -----
     // Stack to keep track of cell states during the collapse process
     private Stack<CellState> backtrackStack = new Stack<CellState>();
 

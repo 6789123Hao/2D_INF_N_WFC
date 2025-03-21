@@ -74,6 +74,14 @@ public partial class TheWorld : MonoBehaviour
     public TMP_Dropdown directionDropdown;
 
 
+    // --------------------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------------
+    // ----------------End of Field Declaration----------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------------
+
+
+
     private void Awake()
     {
         gridCompletionTimesInMilliSec = new List<float>();
@@ -123,9 +131,6 @@ public partial class TheWorld : MonoBehaviour
         Debug.Assert(waveFunctionPrefab != null, "Wave Function prefab not set");
         Debug.Assert(dimensions > 0, "Dimensions not set");
         Debug.Assert(secPerGen > 0, "Seconds per step not set");
-        Debug.Assert(WFCsText != null, "WFCs text not set");
-        Debug.Assert(UnboundText != null, "Unbound text not set");
-        Debug.Assert(CellText != null, "Cell text not set");
         Debug.Assert(CameraVText != null, "V text not set");
         Debug.Assert(CameraWText != null, "V text not set");
         Debug.Assert(player != null, "Player not set");
@@ -202,6 +207,9 @@ public partial class TheWorld : MonoBehaviour
         }
     }
 
+    // <summary>
+    // Calls TileSet.ApplyCurrentRule to apply the current rule to the tiles
+    // </summary>
     void ApplyCurrentRule(Vector3 playerPosition)
     {
         if (currentTileSet != null)
@@ -209,6 +217,10 @@ public partial class TheWorld : MonoBehaviour
             currentTileSet.ApplyCurrentRule(playerPosition);
         }
     }
+
+    // <summary>
+    // Update the UI text elements with the current values
+    // </summary>
     private void UpdateTileDropdownOptions()
     {
         // Ensure tileDropdown and tileSets are not null
@@ -228,6 +240,9 @@ public partial class TheWorld : MonoBehaviour
         tileDropdown.AddOptions(tileSetNames);
     }
 
+    // <summary>
+    // Initialize the rule dropdown with the current tile set's effect rules
+    // </summary>
     private void InitializeRuleDropdown()
     {
         ruleDropdown.ClearOptions();
@@ -260,8 +275,9 @@ public partial class TheWorld : MonoBehaviour
         SelectRule(value);
     }
 
-
+    // <summary>
     // Method to set and initialize a tile set
+    // </summary>
     public void SetTileSet(int setIndex)
     {
         if (setIndex >= 0 && setIndex < tileSets.Count)
@@ -604,7 +620,6 @@ public partial class TheWorld : MonoBehaviour
     {
         playerPos = player.transform.position;
         ApplyCurrentRule(playerPos);
-
         UpdateUI();
     }
 
@@ -668,10 +683,7 @@ public partial class TheWorld : MonoBehaviour
         return neighbors;
     }
 
-    public Cell GetCellPrefab()
-    {
-        return cellPrefab;
-    }
+    public Cell GetCellPrefab() { return cellPrefab; }
 
     public void ReloadScene()
     {

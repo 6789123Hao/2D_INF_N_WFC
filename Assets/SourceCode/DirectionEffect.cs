@@ -24,26 +24,17 @@ public class DirectionEffect : EffectRule
             if (!affectedTiles.Any(affectedTile => affectedTile.tilePrefab == tile.tilePrefab))
                 continue;
 
-            // factor into number of true directions, if all are true, times 2 divide by 4
-            // if 3 are true, times 2 divide by 3
-            // if 2 are true, times 2 divide by 2
-            // if 1 is true, times 2 divide by 1
-
-            int trueDirections = 0;
-
 
             // these tile weight are sum of player's x and y coordinates mod scaling factor;
             float weight = CalculateWeight(playerPosition);
 
-
             tile.tilePrefab.weight = weight / scalingFactor;
-
-
         }
     }
 
     /// <summary>
     /// Calculates weight based on enabled directional factors.
+    /// factor into number of true directions, if all are true, times 2 divide by 4
     /// </summary>
     private float CalculateWeight(Vector3 playerPosition)
     {

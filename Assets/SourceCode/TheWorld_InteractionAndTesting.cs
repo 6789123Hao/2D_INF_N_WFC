@@ -26,16 +26,10 @@ public partial class TheWorld : MonoBehaviour
     public bool runSpeedTest = false; // Toggle to run the speed test
     public int numberOfGrids = 10;    // Number of grids to generate
     public int bulkSpeedRunTimes = 3; // Number of times to run the speed test
-    public Toggle speedTestToggle;
-
-
-
-
-
+    public Toggle speedTestToggle;    // Toggle to enable/disable speed test
 
     // UI Elements
-    public TextMeshProUGUI WFCsText, UnboundText, CellText, PosText,
-            DimensionText, CameraVText, CameraWText;
+    public TextMeshProUGUI PosText, DimensionText, CameraVText, CameraWText;
     public GameObject finishedTextPrefab;  // Reference to the "Finished" text prefab
     public GameObject canvas;
     private float cameraV = 0f, cameraW = 0f;
@@ -45,11 +39,8 @@ public partial class TheWorld : MonoBehaviour
     // Default values for speed and steps
     [SerializeField] private float timeDelayPerStep = 0.1f;
     private int numberOfSteps = 10000;
-    // Ensures we only log the time once
-    // Record the player's start and end time
     private bool isAutoMoveActive = false, firstTileReady = false;
     private Coroutine autoWalkCoroutine;
-    private bool hasLoggedTime = false;
     private float playerStartTime, playerEndTime;
     private int gridsGenerated = 0;   // Counter for the grids generated
     private float speedTestStartTime, speedTestEndTime;
@@ -65,9 +56,6 @@ public partial class TheWorld : MonoBehaviour
     }
     public void UIRest()
     {
-        WFCsText.text = "WFCs: 0";
-        UnboundText.text = "Unbound: 0";
-        CellText.text = "Cells: 0";
         PosText.text = "Pos: 0, 0";
         CameraVText.text = "Cam Height V = ?";
         CameraVText.text = "Cam Width W = ?";
@@ -83,7 +71,6 @@ public partial class TheWorld : MonoBehaviour
             numberOfGrids = newTimes;
         }
     }
-
 
 
     // ================== Start of AutoWalk ==================
@@ -142,6 +129,7 @@ public partial class TheWorld : MonoBehaviour
         Debug.Log("Automated movement finished.");
         WriteLogToFile();  // Write the log to file
     }
+
 
     // Stop the AutoWalk
     public void StopAutoWalkProtocol()
@@ -220,7 +208,6 @@ public partial class TheWorld : MonoBehaviour
             writer.WriteLine($"Tile type / amount: \n{currentTileSet.name} / {CurrentTiles.Length}");
             // writer.WriteLine($"Average each tile connections: {CurrentTiles.Average(t => t.ConnectionsCounts)}");
 
-
             // Write all times in detail
             writer.WriteLine("Grid Formation Times:");
             if (gridCompletionTimesInMilliSec.Count != backedSteps.Count)
@@ -290,7 +277,6 @@ public partial class TheWorld : MonoBehaviour
     {
         isAutoMoveActive = true;  // Set the flag to indicate automated movement
         player.totalSteps = 0;
-        hasLoggedTime = false;  // Reset log flag
 
         OnPlayerStartMove();  // Log the start time
         // Use timeDelayPerStep and numberOfSteps to start the player's movement
@@ -349,11 +335,7 @@ public partial class TheWorld : MonoBehaviour
         // float totalTimeTaken = stopwatch.ElapsedMilliseconds;
         float totalTimeTaken = (speedTestEndTime - speedTestStartTime) * 1000; // Convert to milliseconds
 
-        // Log the results
         LogSpeedTestResults(totalTimeTaken);
-
-        // Show the "Finished" text pop-up at the player's position
-        // ShowFinishedText();
     }
 
     // Method to log the results of the speed test
@@ -384,7 +366,6 @@ public partial class TheWorld : MonoBehaviour
         {
             secPerGen = 0.00000001f;
             StartCoroutine(BulkSpeedRun()); // Start speed test
-            // StartCoroutine(SpeedTest());  // Start the speed test if enabled
         }
         else
         {
@@ -621,25 +602,10 @@ public partial class TheWorld : MonoBehaviour
         LogCoverTestResults(CoverStopwactTime, endTime, gridCount, "MacroGrid");
     }
 
-
+    // Calculate how many gridLength L to generate in each direction to cover K cell length
     private int CalculateGridLengthLfromK(int K, int dimensions)
     {
         return Mathf.CeilToInt((float)(K - dimensions) / (dimensions - 1));
-    }
-
-
-
-    // Helper method to check and add valid grids
-    private void AddToOutsiders(List<WaveFunction> outsiders, WaveFunction grid)
-    {
-        if (grid != null)
-        {
-            outsiders.Add(grid);
-        }
-        else
-        {
-            // Debug.LogError("Failed to extend grid in one direction. Skipping null grid.");
-        }
     }
 
     // Coroutine to generate neighbors
@@ -682,11 +648,6 @@ public partial class TheWorld : MonoBehaviour
 
 
     // ======End of Coverage Test=======
-
-    public void ButtonToDoSometihng()
-    {
-
-    }
 
 
     [ContextMenu("TestingGridSystem")]
